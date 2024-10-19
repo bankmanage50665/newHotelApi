@@ -7,11 +7,10 @@ const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
 
-// const bookingRouter = require("./routes/booking_routes.js");
-// const hotelRoutes = require("./routes/hotel_routes.js");
+const bookingRouter = require("./routes/booking_routes.js");
+const hotelRoutes = require("./routes/hotel_routes.js");
 const HttpError = require("./middleware/HttpError");
-// const otpRoute = require("./routes/user_routes.js");
-const userRoute = require("./routes/user_routes");
+const otpRoute = require("./routes/user_routes.js");
 
 const url = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_USER_PASSWORD}@cluster0.wdrbduw.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -25,10 +24,9 @@ app.use(
   })
 );
 
-// app.use("/otp", otpRoute);
-// app.use("/hoteles", hotelRoutes);
-// app.use("/bookings", bookingRouter);
-app.use("/user", userRoute);
+app.use("/otp", otpRoute);
+app.use("/hoteles", hotelRoutes);
+app.use("/bookings", bookingRouter);
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route", 404);
