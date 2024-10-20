@@ -89,7 +89,9 @@ async function sendOTP(req, res, next) {
       to: `+91${phoneNumber}`,
     });
 
-    res.status(200).json({ message: "OTP sent successfully", otp });
+    console.log(otp)
+
+    res.status(200).json({ message: "OTP sent successfully" });
   } catch (err) {
     return next(
       new HttpError("Field to send otp, Please try agin later.", 500)
