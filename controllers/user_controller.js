@@ -67,8 +67,6 @@ async function sendOTP(req, res, next) {
       specialChars: false,
     });
 
-    console.log(otp);
-
     const user = await User.findOneAndUpdate(
       { phoneNumber },
 
@@ -80,7 +78,9 @@ async function sendOTP(req, res, next) {
     );
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return next(
+        new HttpError("Haven't register yet, Please register first.", 404)
+      );
     }
 
     await client.messages.create({
@@ -89,7 +89,7 @@ async function sendOTP(req, res, next) {
       to: `+91${phoneNumber}`,
     });
 
-    console.log(otp)
+    console.log(otp);
 
     res.status(200).json({ message: "OTP sent successfully" });
   } catch (err) {
