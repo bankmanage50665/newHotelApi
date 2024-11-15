@@ -87,11 +87,11 @@ async function sendOTP(req, res, next) {
       );
     }
 
-    // await client.messages.create({
-    //   body: `Otp from Shyam Rooms: Your OTP is: ${otp}`,
-    //   from: process.env.TWILIO_PHONE_NUMBER,
-    //   to: `+91${phoneNumber}`,
-    // });
+    await client.messages.create({
+      body: `Otp from Shyam Rooms: Your OTP is: ${otp}`,
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: `+91${phoneNumber}`,
+    });
 
     console.log(otp);
 
