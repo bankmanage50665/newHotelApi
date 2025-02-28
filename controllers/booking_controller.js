@@ -10,9 +10,9 @@ const Hotel = require("../model/hotel_model");
 // Create a new booking
 exports.createBooking = async (req, res, next) => {
   const err = validationResult(req);
-  if (!err.isEmpty()) {
-    return next(new HttpError("Invalid user credentials.", 500));
-  }
+  // if (!err.isEmpty()) {
+  //   return next(new HttpError("Invalid user credentials.", 500));
+  // }
   const {
     userId,
     hotelId,
@@ -23,6 +23,17 @@ exports.createBooking = async (req, res, next) => {
     phoneNumber,
     userName,
   } = req.body;
+
+  console.log(
+    userId,
+    hotelId,
+    checkInDate,
+    checkOutDate,
+    numberOfGuests,
+    totalPrice,
+    phoneNumber,
+    userName
+  );
 
   const newBooking = new Booking({
     userId,

@@ -10,10 +10,10 @@ async function createReview(req, res, next) {
     return next("Invalid user credintials.", 500);
   }
 
-  const { userName, userName, rating, comment } = req.body;
+  const { userName, productId, rating, comment } = req.body;
 
   const newReview = new Review({
-    userName,
+    productId,
     userName,
     rating,
     comment,
